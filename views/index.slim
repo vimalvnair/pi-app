@@ -1,0 +1,18 @@
+html
+  head
+    title Raspberry
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    link rel="stylesheet" type="text/css"  href="/css/index.css"
+    link rel="stylesheet" type="text/css"  href="/css/bootstrap.min.css"
+    script src="/js/jscolor.min.js"
+  body
+    form action="/set_color" method="post"
+      div.container-fluid.field-container
+        div.row.col-md-offset-2
+          div.col-xs-12.col-md-9.field-label
+            label for="color"
+              | Color
+          div.col-xs-12.col-md-9.field
+            input class="jscolor" name="color"  id="color" value = (request.cookies['color'] || "FF00AA")
+          div.col-xs-12.col-md-9.field
+            input type="submit" value="Submit!"

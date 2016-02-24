@@ -1,0 +1,19 @@
+require 'bundler'
+Bundler.setup
+Bundler.require
+
+set :bind, '0.0.0.0'
+set :port, 80
+
+get '/' do
+  [0,1,3].cycle(1) do |pin_number|
+    io = WiringPi::GPIO.new do |gpio|
+      gpio.pin_mode(pin_number, WiringPi::OUTPUT)
+    end
+    io.digital_write(pin_number, WiringPi::HIGH)
+    io.delay(1000)
+    io.digital_write(pin_number, WiringPi::LOW)
+  end
+  'Hello world! : From Raspberry Pi!!!'
+end
+
